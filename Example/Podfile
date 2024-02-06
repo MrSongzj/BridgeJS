@@ -1,6 +1,6 @@
 use_frameworks!
 
-platform :ios, '10.0'
+platform :ios, '13.0'
 
 target 'BridgeJS_Example' do
   pod 'BridgeJS', :path => '../'

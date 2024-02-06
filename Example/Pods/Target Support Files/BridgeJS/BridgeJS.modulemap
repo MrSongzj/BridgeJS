@@ -1,0 +1,6 @@
+framework module BridgeJS {
+  umbrella header "BridgeJS-umbrella.h"
+
+  export *
+  module * { export * }
+}

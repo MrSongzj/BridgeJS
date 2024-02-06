@@ -1,0 +1,16 @@
+PODS:
+  - BridgeJS (0.1.0)
+
+DEPENDENCIES:
+  - BridgeJS (from `../`)
+
+EXTERNAL SOURCES:
+  BridgeJS:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BridgeJS: dfae192248d1f5adb70f5ddfd417bb80ae0033c8
+
+PODFILE CHECKSUM: 7f39db858620f69dd4e8deff398a561b5a4d5391
+
+COCOAPODS: 1.12.1
