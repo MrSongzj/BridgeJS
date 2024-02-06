@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="zh-cmn-Hans">
+    <meta charset="UTF-8">
+    <title>DSBridge Test</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,user-scalable=no" />
+    <!--require dsbridge init js-->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/dsbridge/dist/dsbridge.js"> </script> -->
+    <script>
+        function test() {
+            return "js-test"
+        }
+    var msBridge = {
+        cbCount: 0,
+        // 调用原生方法的主要函数
+        call: function (method, data, callback) {
+            if (typeof data === "function") {
+                // 如果第二个参数是方法, 把第二个参数设置到 callback 上, 把参数设置为空对象
+                callback = data;
+                data = undefined;
+            }
+            // 给参数套上一层 data 字段
+            let info = { data };
+
+            if (typeof callback === "function") {
+                // 如果存在回调函数，生成唯一标识符，并将回调函数存储到 window 对象中
+                const callbackName = "msbcb" + this.cbCount++;
+                window[callbackName] = callback;
+                info.callback = callbackName;
+            }
+
+            // 调用原生方法并获取返回值
+            return prompt("msbridge-" + method, JSON.stringify(info));
+        },
+        api: {},
+        didInit: false,
+        addApi: function (name, method) {
+            if (typeof method === "function") {
+                this.api[name] = method;
+            } else {
+                Object.keys(method).forEach((key) => {
+                    if (typeof method[key] === "function") {
+                        this.api[name + "." + key] = method[key];
+                    }
+                })
+            }
+            if (!this.didInit) {
+                this.didInit = true;
+                setTimeout(() => {
+                    this.call("_init")
+                }, 0);
+            }
+        },
+    };
+
+    function msNaviteCallJavaScript(info) {
+        let method = msBridge.api[info.method];
+        let data = info.data || [];
+        data.push((result, complete) => {
+            // 异步方法回调
+            msBridge.call("_msJsCallback", JSON.stringify({
+                data: result,
+                complete: false !== complete ? "1" : "0",
+                callback: info.callback
+            }));
+        });
+        const result = method.apply(msBridge.api, data);
+        if (result !== undefined) {
+            // 调用js的同步方法
+            msBridge.call("_msJsCallback", JSON.stringify({
+                data: result,
+                complete: "1",
+                callback: info.callback
+            }));
+        }
+    }
+
+
+
+
+    </script>
+</head>
+<style>
+    .btn {
+        text-align: center;
+        background: #eee;
+        color: #000;
+        padding: 20px;
+        margin: 30px;
+        font-size: 24px;
+        border-radius: 4px;
+        box-shadow: 4px 2px 10px #999;
+    }
+
+    .btn:active {
+        opacity: .7;
+        box-shadow: 4px 2px 10px #555;
+    }
+    p {
+        font-size: 32px;
+    }
+</style>
+
+<body>
+    <p>default</p>
+    <div class="btn" onclick="callSyn()">Synchronous call</div>
+    <div class="btn" onclick="callAsyn()">Asynchronous call</div>
+    <div class="btn" onclick="callSynSwift()">Syn call (swift)</div>
+    <div class="btn" onclick="callAsynSwift()">Async call(swift)</div>
+    <div class="btn" onclick="callNoArgSyn()">Sync call without argument</div>
+    <div class="btn" onclick="callNoArgAsyn()">Async call without argument</div>
+    <div class="btn" onclick="echoSyn()">echo.syn</div>
+    <div class="btn" onclick="echoAsyn()">echo.asyn</div>
+    <div class="btn" onclick="callAsyn_()">Stress test，2K times consecutive asynchronous API calls</div>
+    <div class="btn" onclick="callNever()">Never call because without @JavascriptInterface
+        annotation<br />( This test is
+        just for Android ,should be ignored in IOS )
+    </div>
+    <div class="btn" onclick="callProgress()">call progress <span id='progress'></span></div>
+    <div class="btn" onclick="hasNativeMethod('xx')">hasNativeMethod("xx")</div>
+    <div class="btn" onclick="hasNativeMethod('testSyn')">hasNativeMethod("testSyn")</div>
+
+    <script>
+        // 同步方法无参无返回值
+        msBridge.addApi("jsTest0", () => {
+            msBridge.call('test', '同步无参无返回值')
+        })
+        // 同步有参无返回值
+        msBridge.addApi("jsTest1", (arg) => {
+            msBridge.call('test', arg + '-同步有参无返回值')
+        });
+
+        // 同步无参有返回值
+            msBridge.addApi("jsTest2", () => {
+                return JSON.stringify({name: 'aa', age: 1})
+            });
+
+            // 同步有参有返回值
+                msBridge.addApi("jsTest3", (arg) => {
+                    return arg + '-同步有参有返回值'
+                });
+
+        msBridge.addApi("jsTest4", (arg, callback) => {
+            setTimeout(() => {
+                callback(arg + '-jscallback', false)
+                callback(arg + '-jscallback2')
+                callback(arg + '-jscallback3', true)
+            }, 3000);
+        });
+
+        msBridge.addApi("jsTest5", (a, b, c) => {
+            const d = JSON.parse(c)
+                msBridge.call('test', a + b + d.a + d.c + '同步无参无返回值')
+            })
+
+            msBridge.addApi("base", {
+                b1: function () {
+                    msBridge.call('test', '测试命名空间')
+                }
+            })
+
+        function callSyn() {
+            // alert(dsBridge.call("testSyn", "Hello"))
+
+            // msBridge.call("f1")
+
+            // msBridge.call("f2")
+            // msBridge.call("f2", "f2f2")
+
+            // const r = bridge.call("f3")
+            
+            // let r = msBridge.call("f4", JSON.stringify({data: "js_data", age: 10}))
+            // r = JSON.parse(r)
+            // r = r.data + "-" + r.age
+            
+
+            // msBridge.call("test.a1")
+
+            // const r = prompt('message', 'default');
+
+            // msBridge.call("t1", "a")
+            const r = msBridge.call("testSync", "jsData-sync")
+
+            const p = document.getElementsByTagName('p')[0]
+            if (p) {
+                p.textContent = r || 'none'
+            }
+        }
+
+        function callAsyn() {
+            // const r = dsBridge.call("testAsyn", "hello", function (v) {
+            //     alert(v)
+            // })
+            // const r = prompt("aaa", "bbbb");
+            const p = document.getElementsByTagName('p')[0]
+            // if (p) {
+            //     p.textContent = r || 'none'
+            // }
+            msBridge.call("testAsync", "jsData-async", (res) => {
+                 if (p) {
+                     p.textContent = res
+                 }
+            })
+
+            // msBridge.call("f6", (res) => {
+            //     const r = JSON.parse(res)
+            //     if (p) {
+            //         p.textContent = r.data + '-' + r.age
+            //     }
+            // })
+
+            // msBridge.call("f7", (res) => {
+            //     if (p) {
+            //         p.textContent = res
+            //     }
+            // })
+
+            // msBridge.call("t3", (res) => {
+            //     if (p) {
+            //         p.textContent = res
+            //     }
+            // })
+
+            // msBridge.call("test.a2", (res) => {
+                
+            // })
+
+        }
+
+        function callSynSwift() {
+            alert(dsBridge.call("swift.testSyn", "hello"))
+        }
+
+        function callAsynSwift() {
+            dsBridge.call("swift.testAsyn", "hello", function (v) {
+                alert(v)
+            })
+        }
+
+        function callAsyn_() {
+            for (var i = 0; i < 2000; i++) {
+                dsBridge.call("testAsyn", "js+" + i, function (v) {
+                    if (v == "js+1999 [ asyn call]") {
+                        alert("All tasks completed!")
+                    }
+                })
+            }
+        }
+
+        function callNoArgSyn() {
+            alert(dsBridge.call("testNoArgSyn"));
+        }
+
+        function callNoArgAsyn() {
+            dsBridge.call("testNoArgAsyn", function (v) {
+                alert(v)
+            });
+        }
+
+        function callNever() {
+            alert(dsBridge.call("testNever", { msg: "testSyn" }))
+        }
+
+        function echoSyn() {
+            // call function with namespace
+            var ret = dsBridge.call("echo.syn", { msg: " I am echoSyn call", tag: 1 });
+            alert(JSON.stringify(ret))
+        }
+
+        function echoAsyn() {
+            // call function with namespace
+            dsBridge.call("echo.asyn", { msg: " I am echoAsyn call", tag: 2 }, function (ret) {
+                alert(JSON.stringify(ret));
+            })
+        }
+
+        function callProgress() {
+            dsBridge.call("callProgress", function (value) {
+                if (value == 0) value = "";
+                document.getElementById("progress").innerText = value
+            })
+        }
+
+        function hasNativeMethod(name) {
+            alert(dsBridge.hasNativeMethod(name))
+        }
+
+
+        dsBridge.register('addValue', function (r, l) {
+            return r + l;
+        })
+
+        dsBridge.registerAsyn('append', function (arg1, arg2, arg3, responseCallback) {
+            responseCallback(arg1 + " " + arg2 + " " + arg3);
+        })
+
+        dsBridge.registerAsyn('startTimer', function (responseCallback) {
+            var t = 0;
+            var timer = setInterval(function () {
+                if (t == 5) {
+                    responseCallback(t)
+                    clearInterval(timer)
+                } else {
+                    // if the 2nd argument is false,  the java callback handler will be not removed!
+                    responseCallback(t++, false)
+                }
+            }, 1000)
+
+        })
+
+        // namespace test for syn functions
+        dsBridge.register("syn", {
+            tag: "syn",
+            addValue: function (r, l) {
+                return r + l;
+            },
+            getInfo: function () {
+                return { tag: this.tag, value: 8 }
+            }
+        })
+
+        // namespace test for asyn functions
+        dsBridge.registerAsyn("asyn", {
+            tag: "asyn",
+            addValue: function (r, l, responseCallback) {
+                responseCallback(r + l);
+            },
+            getInfo: function (responseCallback) {
+                responseCallback({ tag: this.tag, value: 8 })
+            }
+        })
+
+    </script>
+</body>
+
+</html>

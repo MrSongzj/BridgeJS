@@ -12,9 +12,9 @@
 		4CFE46256C870ED2ED029F6C466A9807 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		50E3DE669EE1D15D92E9581678A2C1D8 /* Pods-BridgeJS_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B6E8F8104E62A188A1A5507AB77D2F3 /* Pods-BridgeJS_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		666AF8E9E58DD61FC58FA139681ACE12 /* BridgeJS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA76B0E70DAF5AEF7AA652EECE9571F /* BridgeJS-dummy.m */; };
-		708F0850F187F77E817240E19CA72845 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3049CC6E8B3AA5D2DB431BC19AC09C4D /* ReplaceMe.swift */; };
 		9834BCD1EE0FB43AAD64D976BD2C068D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		A4A2C69001827AEBCFC9D513F59854FD /* Pods-BridgeJS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6DF2A45EAC63C37B050817C2A36557 /* Pods-BridgeJS_Example-dummy.m */; };
+		BD9E35172B7210C0004A5F24 /* BridgeJS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9E35162B7210C0004A5F24 /* BridgeJS.swift */; };
 		F2CE184E6644FCCE9244DA18CAC53AA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		FB995D017353069F3557BF2A68053ACF /* BridgeJS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BA46630D4F60129CE044D592AF1AF98 /* BridgeJS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -41,7 +41,6 @@
 		0B0669BF1ACD5B19C43CC700321ADB48 /* Pods-BridgeJS_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BridgeJS_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		1E7ACAD487AA6C2E2008621822C98642 /* Pods-BridgeJS_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BridgeJS_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		1FE06D68ABEEAE39B9E2ECB81D3D4FBF /* Pods-BridgeJS_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BridgeJS_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3049CC6E8B3AA5D2DB431BC19AC09C4D /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = BridgeJS/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		3B6E8F8104E62A188A1A5507AB77D2F3 /* Pods-BridgeJS_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BridgeJS_Tests-umbrella.h"; sourceTree = "<group>"; };
 		4D1EFA4339A43B0DD3B3A50FCA2BB393 /* Pods-BridgeJS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BridgeJS_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		554AB19F36ED81503F1A4E86187C70B8 /* Pods-BridgeJS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BridgeJS_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -56,20 +55,21 @@
 		88CB6467D0C695EFB3B190DF2A55C60F /* BridgeJS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "BridgeJS-Info.plist"; sourceTree = "<group>"; };
 		8CB7F566DF199D34DF32A3FCE375FD11 /* Pods-BridgeJS_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BridgeJS_Tests-dummy.m"; sourceTree = "<group>"; };
 		971AE349F7BB63347A8C2C69556B7248 /* Pods-BridgeJS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BridgeJS_Example.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E02543AF4652D3D94B60CD4C082DFA5 /* Pods-BridgeJS_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-BridgeJS_Tests"; path = Pods_BridgeJS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F1F6647F7D7D4DEC8B610D6C03A577 /* Pods-BridgeJS_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BridgeJS_Example-frameworks.sh"; sourceTree = "<group>"; };
-		B1F85B5E450CD4DE9E1C2B09C172F00D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		B1F85B5E450CD4DE9E1C2B09C172F00D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B2B5FBCF2FD0012005FFF773D178A3CB /* BridgeJS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BridgeJS-prefix.pch"; sourceTree = "<group>"; };
-		B46D129C55C2A903EC77464F59BDE861 /* BridgeJS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = BridgeJS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B46D129C55C2A903EC77464F59BDE861 /* BridgeJS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BridgeJS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BCE2ED2A3C1155BE52A0B73BDFE18F96 /* BridgeJS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BridgeJS.debug.xcconfig; sourceTree = "<group>"; };
+		BD9E35162B7210C0004A5F24 /* BridgeJS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeJS.swift; sourceTree = "<group>"; };
 		D0752E7B5C937BE8BD637C32FF6A62B0 /* Pods-BridgeJS_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-BridgeJS_Example"; path = Pods_BridgeJS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14991F299EC3043F302C50930234624 /* BridgeJS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BridgeJS.release.xcconfig; sourceTree = "<group>"; };
-		E2BE42BC30B9EC5A9653C2C9514AB8D3 /* BridgeJS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BridgeJS; path = BridgeJS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2BE42BC30B9EC5A9653C2C9514AB8D3 /* BridgeJS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BridgeJS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C5CC07446F728E21120B71B2687898 /* Pods-BridgeJS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BridgeJS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		ECEF6EB69F9EFB36075340EB50B2B063 /* BridgeJS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BridgeJS.modulemap; sourceTree = "<group>"; };
 		F6D9107546A72108645C6C6C4F8AA177 /* Pods-BridgeJS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BridgeJS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		FCB52E7C0BB5E58FDED368BA1EC7FA90 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		FCB52E7C0BB5E58FDED368BA1EC7FA90 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,9 +144,9 @@
 		4ACB838357849A1B39A1F7FF1F76CDC3 /* BridgeJS */ = {
 			isa = PBXGroup;
 			children = (
-				3049CC6E8B3AA5D2DB431BC19AC09C4D /* ReplaceMe.swift */,
 				2EA7169D98E8EC1A111B3995DEBF1644 /* Pod */,
 				1BA4B43DDBE458D213BD9931668569E3 /* Support Files */,
+				BD9E35162B7210C0004A5F24 /* BridgeJS.swift */,
 			);
 			name = BridgeJS;
 			path = ../..;
@@ -216,7 +216,7 @@
 		DB5FEB48CF86BF6B9E75CAB4AAF16B50 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2BE42BC30B9EC5A9653C2C9514AB8D3 /* BridgeJS */,
+				E2BE42BC30B9EC5A9653C2C9514AB8D3 /* BridgeJS.framework */,
 				D0752E7B5C937BE8BD637C32FF6A62B0 /* Pods-BridgeJS_Example */,
 				9E02543AF4652D3D94B60CD4C082DFA5 /* Pods-BridgeJS_Tests */,
 			);
@@ -306,7 +306,7 @@
 			);
 			name = BridgeJS;
 			productName = BridgeJS;
-			productReference = E2BE42BC30B9EC5A9653C2C9514AB8D3 /* BridgeJS */;
+			productReference = E2BE42BC30B9EC5A9653C2C9514AB8D3 /* BridgeJS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -317,6 +317,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					B9DF09A3AC8A10FE005ADD12487ECA95 = {
+						LastSwiftMigration = 1500;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -376,7 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				666AF8E9E58DD61FC58FA139681ACE12 /* BridgeJS-dummy.m in Sources */,
-				708F0850F187F77E817240E19CA72845 /* ReplaceMe.swift in Sources */,
+				BD9E35172B7210C0004A5F24 /* BridgeJS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +486,7 @@
 			baseConfigurationReference = BCE2ED2A3C1155BE52A0B73BDFE18F96 /* BridgeJS.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -501,6 +507,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -613,6 +620,7 @@
 			baseConfigurationReference = E14991F299EC3043F302C50930234624 /* BridgeJS.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -696,8 +704,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

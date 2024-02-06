@@ -15,6 +15,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8ED5650383E531B30137B77B /* Pods_BridgeJS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7006151C547C01F7FC761768 /* Pods_BridgeJS_Tests.framework */; };
+		BD9E35192B72203F004A5F24 /* msbridge.js in Resources */ = {isa = PBXBuildFile; fileRef = BD9E35182B72203F004A5F24 /* msbridge.js */; };
+		BD9E351B2B72204D004A5F24 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = BD9E351A2B72204D004A5F24 /* test.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		ABCFE98287A0A808F9AD8257 /* Pods-BridgeJS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeJS_Tests.release.xcconfig"; path = "Target Support Files/Pods-BridgeJS_Tests/Pods-BridgeJS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B46BEBC6223DA18F9C774692 /* Pods-BridgeJS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeJS_Example.debug.xcconfig"; path = "Target Support Files/Pods-BridgeJS_Example/Pods-BridgeJS_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B4D9A1E2928B0EC9B493A646 /* Pods-BridgeJS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BridgeJS_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BridgeJS_Tests/Pods-BridgeJS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD9E35182B72203F004A5F24 /* msbridge.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = msbridge.js; sourceTree = "<group>"; };
+		BD9E351A2B72204D004A5F24 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		C3BACF9F018FF5D456F1258B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E41BDF40EA2F1B574F5178E7 /* Pods_BridgeJS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BridgeJS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -102,6 +106,8 @@
 		607FACD21AFB9204008FA782 /* Example for BridgeJS */ = {
 			isa = PBXGroup;
 			children = (
+				BD9E351A2B72204D004A5F24 /* test.html */,
+				BD9E35182B72203F004A5F24 /* msbridge.js */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -249,6 +255,8 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				BD9E351B2B72204D004A5F24 /* test.html in Resources */,
+				BD9E35192B72203F004A5F24 /* msbridge.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +530,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BridgeJS_Example.app/BridgeJS_Example";
 			};
 			name = Debug;
@@ -540,7 +548,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BridgeJS_Example.app/BridgeJS_Example";
 			};
 			name = Release;
