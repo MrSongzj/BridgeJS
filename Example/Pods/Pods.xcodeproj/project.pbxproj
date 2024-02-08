@@ -15,6 +15,8 @@
 		9834BCD1EE0FB43AAD64D976BD2C068D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		A4A2C69001827AEBCFC9D513F59854FD /* Pods-BridgeJS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6DF2A45EAC63C37B050817C2A36557 /* Pods-BridgeJS_Example-dummy.m */; };
 		BD9E35172B7210C0004A5F24 /* BridgeJS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9E35162B7210C0004A5F24 /* BridgeJS.swift */; };
+		BDE08ACF2B748A05009B6660 /* BridgeJSApiMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE08ACE2B748A05009B6660 /* BridgeJSApiMap.swift */; };
+		BDE08AD12B748B1E009B6660 /* NSObject+BridgeJS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE08AD02B748B1E009B6660 /* NSObject+BridgeJS.swift */; };
 		F2CE184E6644FCCE9244DA18CAC53AA5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		FB995D017353069F3557BF2A68053ACF /* BridgeJS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BA46630D4F60129CE044D592AF1AF98 /* BridgeJS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -63,6 +65,8 @@
 		B46D129C55C2A903EC77464F59BDE861 /* BridgeJS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BridgeJS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BCE2ED2A3C1155BE52A0B73BDFE18F96 /* BridgeJS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BridgeJS.debug.xcconfig; sourceTree = "<group>"; };
 		BD9E35162B7210C0004A5F24 /* BridgeJS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeJS.swift; sourceTree = "<group>"; };
+		BDE08ACE2B748A05009B6660 /* BridgeJSApiMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeJSApiMap.swift; sourceTree = "<group>"; };
+		BDE08AD02B748B1E009B6660 /* NSObject+BridgeJS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+BridgeJS.swift"; sourceTree = "<group>"; };
 		D0752E7B5C937BE8BD637C32FF6A62B0 /* Pods-BridgeJS_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-BridgeJS_Example"; path = Pods_BridgeJS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14991F299EC3043F302C50930234624 /* BridgeJS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BridgeJS.release.xcconfig; sourceTree = "<group>"; };
 		E2BE42BC30B9EC5A9653C2C9514AB8D3 /* BridgeJS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BridgeJS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +151,8 @@
 				2EA7169D98E8EC1A111B3995DEBF1644 /* Pod */,
 				1BA4B43DDBE458D213BD9931668569E3 /* Support Files */,
 				BD9E35162B7210C0004A5F24 /* BridgeJS.swift */,
+				BDE08ACE2B748A05009B6660 /* BridgeJSApiMap.swift */,
+				BDE08AD02B748B1E009B6660 /* NSObject+BridgeJS.swift */,
 			);
 			name = BridgeJS;
 			path = ../..;
@@ -319,7 +325,7 @@
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					B9DF09A3AC8A10FE005ADD12487ECA95 = {
-						LastSwiftMigration = 1500;
+						LastSwiftMigration = 1520;
 					};
 				};
 			};
@@ -382,6 +388,8 @@
 			files = (
 				666AF8E9E58DD61FC58FA139681ACE12 /* BridgeJS-dummy.m in Sources */,
 				BD9E35172B7210C0004A5F24 /* BridgeJS.swift in Sources */,
+				BDE08ACF2B748A05009B6660 /* BridgeJSApiMap.swift in Sources */,
+				BDE08AD12B748B1E009B6660 /* NSObject+BridgeJS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +516,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -641,7 +649,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";

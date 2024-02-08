@@ -8,43 +8,8 @@
 import Foundation
 import WebKit
 
-/// 桥接接口映射协议
-public protocol BridgeJSApiMap {
-    /// 接口映射, [方法名: 方法实现(闭包/函数地址)]
-    var apiMap: [String: Any] { get }
-
-    /// 同步方法示例
-    /// 只支持以下类型的同步方法
-
-    /// 无参无返回值
-    func tSyncNN()
-    /// 无参有返回值
-    func tSyncNY() -> String
-    /// 有参无返回值
-    func tSyncYN(data: String)
-    /// 有参有返回值
-    func tSyncYY(data: String) -> String
-
-    /// 异步方法示例
-    /// 只支持以下类型的一部方法
-
-    /// 无参有返回值
-    func tAsyncNY(callback: @escaping (_ res: String, _ complete: Bool) -> Void)
-    /// 有参有返回值
-    func tAsyncYY(data: String, callback: @escaping (_ res: String, _ complete: Bool) -> Void)
-}
-
-public extension BridgeJSApiMap {
-    func tSyncNN() {}
-    func tSyncNY() -> String {""}
-    func tSyncYN(data: String) {}
-    func tSyncYY(data: String) -> String {""}
-    func tAsyncNY(callback: @escaping BridgeJSApiResponse) {}
-    func tAsyncYY(data: String, callback: @escaping BridgeJSApiResponse) {}
-}
-
 /// 接口响应回调
-public typealias BridgeJSApiResponse = (_ res: String, _ complete: Bool) -> Void
+typealias BridgeJSApiResponse = (_ res: String, _ complete: Bool) -> Void
 
 public final class BridgeJS: NSObject, WKUIDelegate {
     /// 观察 WKWebView 的 uiDelegate 变化
@@ -85,11 +50,11 @@ public final class BridgeJS: NSObject, WKUIDelegate {
         // 还原旧代理的方法
         if let oldUiDelegate = oldUIDelegate,
            oldUiDelegate !== self {
-            (oldUiDelegate as? NSObject)?.ms_replaceMethod(with: nil)
+            (oldUiDelegate as? NSObject)?.ms_hookWKUIDelegate(with: nil)
         }
         if let uiDelegate = webView.uiDelegate {
             // hook 新代理的方法
-            (uiDelegate as? NSObject)?.ms_replaceMethod(with: { [weak self] webView, prompt, defaultText, frame, completionHandler in
+            (uiDelegate as? NSObject)?.ms_hookWKUIDelegate(with: { [weak self] webView, prompt, defaultText, frame, completionHandler in
                 if self?.checkBridgeId(prompt) ?? false {
                     // JavaScript 调用原生方法
                     self?.webView(webView, runJavaScriptTextInputPanelWithPrompt: prompt, defaultText: defaultText, initiatedByFrame: frame, completionHandler: completionHandler)
@@ -267,45 +232,5 @@ public final class BridgeJS: NSObject, WKUIDelegate {
             bridge.runJs(jsQueue)
             bridge.jsQueue = nil
         }
-    }
-}
-
-var associatedObjectKey: UInt8 = 0
-typealias ReplaceMethod = (_ webView: WKWebView, _ prompt: String, _ defaultText: String?, _ frame: WKFrameInfo, _ completionHandler: @escaping (String?) -> Void) -> Bool
-extension NSObject {
-    func ms_replaceMethod(with closure: ReplaceMethod?) {
-        let originalSel = #selector(WKUIDelegate.webView(_:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:))
-
-        if class_getInstanceMethod(type(of: self), originalSel) == nil {
-            // 没有实现添加默认实现
-            let sel = #selector(ms_default_webView(_:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:))
-            let imp = class_getMethodImplementation(type(of: self), sel)!
-            class_addMethod(type(of: self), originalSel, imp, nil)
-        }
-        // 交换方法
-        let originalMethod = class_getInstanceMethod(type(of: self), originalSel)!
-        let hookSel = #selector(ms_hook_webView(_:runJavaScriptTextInputPanelWithPrompt:defaultText:initiatedByFrame:completionHandler:))
-        let hookMethod = class_getInstanceMethod(type(of: self), hookSel)!
-        method_exchangeImplementations(originalMethod, hookMethod)
-        // 关联闭包对象
-        objc_setAssociatedObject(self, &associatedObjectKey, closure, .OBJC_ASSOCIATION_COPY_NONATOMIC)
-    }
-
-    /// hook 协议方法
-    @objc func ms_hook_webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
-        // 闭包存在说明方法已经被替换
-        if let closure = objc_getAssociatedObject(self, &associatedObjectKey) as? ReplaceMethod {
-            if !closure(webView, prompt, defaultText, frame, completionHandler) {
-                // hook 方法不处理, 使用原方法处理
-                ms_hook_webView(webView, runJavaScriptTextInputPanelWithPrompt: prompt, defaultText: defaultText, initiatedByFrame: frame, completionHandler: completionHandler)
-            }
-        } else {
-            completionHandler(nil)
-        }
-    }
-
-    /// 默认实现, 和不实现协议方法一样的效果
-    @objc func ms_default_webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
-        completionHandler(nil)
     }
 }
